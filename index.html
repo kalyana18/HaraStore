@@ -1,0 +1,1852 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HARA STORE - Sepatu, Sandal & Tas | Pasar Ciawi, Bogor</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#fffbeb',
+                            100: '#fef3c7',
+                            200: '#fde68a',
+                            600: '#d97706',
+                            700: '#b45309',
+                            800: '#92400e',
+                            900: '#78350f',
+                        },
+                        stone: {
+                            50: '#fafaf9',
+                            100: '#f5f5f4',
+                            200: '#e7e5e4',
+                            800: '#292524',
+                            900: '#1c1917',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+        /* Responsive layout fixes: laptop, tablet, and mobile */
+        *, *::before, *::after { box-sizing: border-box; }
+        html { width: 100%; max-width: 100%; overflow-x: clip; scroll-behavior: smooth; }
+        body { width: 100%; max-width: 100%; min-width: 0; overflow-x: clip; }
+        img, video, canvas, svg { max-width: 100%; }
+        img { height: auto; }
+        button, input, select, textarea { max-width: 100%; font: inherit; }
+        #app-view, main, header, footer, section, nav { min-width: 0; }
+        #app-view { width: 100%; overflow-wrap: anywhere; }
+        #app-view .max-w-7xl, footer .max-w-7xl { width: 100%; }
+        #cart-drawer > div { padding-left: 0; }
+        #cart-drawer > div > div { width: min(100vw, 28rem); }
+        #product-modal { overflow-y: auto; }
+        #product-modal-content { width: min(100%, 48rem); }
+        #toast-container { max-width: calc(100vw - 2rem); }
+        table { max-width: 100%; }
+        @media (max-width: 640px) {
+            #announcement-bar { gap: .35rem; padding-left: .6rem; padding-right: .4rem; font-size: 10px; }
+            #announcement-bar > div { min-width: 0; white-space: normal; line-height: 1.35; }
+            #announcement-bar button { flex: 0 0 auto; }
+            header > div:first-child { gap: .35rem; padding-left: .75rem; padding-right: .75rem; }
+            header a span.text-xl { font-size: 1rem; }
+            header .flex.items-center.gap-2.sm\\:gap-3 { gap: .15rem; }
+            header button.p-2 { padding: .4rem; }
+            #mobile-menu > div { width: min(84vw, 20rem); }
+            #app-view section { scroll-margin-top: 5rem; }
+            #app-view .py-16 { padding-top: 2.5rem; padding-bottom: 2.5rem; }
+            #app-view .py-12 { padding-top: 2rem; padding-bottom: 2rem; }
+            #app-view .gap-12 { gap: 1.75rem; }
+            #app-view h1 { overflow-wrap: anywhere; }
+            #app-view .grid.grid-cols-2 { gap: .65rem; }
+            #app-view .grid.grid-cols-2 > * { min-width: 0; }
+            #app-view .grid.grid-cols-2 .p-4 { padding: .65rem; }
+            #app-view .grid.grid-cols-2 h3 { overflow-wrap: anywhere; }
+            #app-view .grid.grid-cols-2 .text-sm { font-size: .8rem; }
+            #app-view aside { padding: 1rem; }
+            #product-modal { align-items: flex-start; padding: .5rem; }
+            #product-modal-content { max-height: calc(100dvh - 1rem); padding: 1rem; border-radius: 1rem; }
+            #cart-drawer .p-6 { padding: 1rem; }
+            footer { margin-top: 2.5rem; padding-top: 2.5rem; }
+            footer .grid { gap: 1.75rem; }
+        }
+        @media (min-width: 641px) and (max-width: 1023px) {
+            #app-view .max-w-7xl { padding-left: 1.5rem; padding-right: 1.5rem; }
+            #app-view .gap-12 { gap: 2rem; }
+        }
+        @media (max-width: 380px) {
+            #app-view .grid.grid-cols-2 { gap: .5rem; }
+            #app-view .grid.grid-cols-2 .p-4 { padding: .5rem; }
+            #app-view .grid.grid-cols-2 .text-xs { font-size: .68rem; }
+            #app-view .grid.grid-cols-2 .text-sm { font-size: .75rem; }
+            #app-view .grid.grid-cols-2 button { padding-left: .35rem; padding-right: .35rem; }
+            header a .text-xl { font-size: .9rem; }
+        }
+    </style>
+</head>
+<body class="bg-stone-50 text-stone-900 flex flex-col min-h-screen antialiased selection:bg-amber-100 selection:text-amber-900">
+
+    <!-- ANNOUNCEMENT BAR -->
+    <div id="announcement-bar" class="bg-stone-900 text-stone-100 text-xs py-2 px-4 text-center font-medium flex justify-between items-center">
+        <div class="flex-1 text-center truncate">
+            <span>✨ Temukan sepatu, sandal, dan tas favoritmu di <strong class="text-amber-400">HARA STORE</strong> | Lokasi Store: Pasar Ciawi, Bogor</span>
+        </div>
+        <button onclick="document.getElementById('announcement-bar').remove()" class="text-stone-400 hover:text-white ml-2">
+            <i data-lucide="x" class="w-3.5 h-3.5"></i>
+        </button>
+    </div>
+
+    <!-- MAIN NAVBAR -->
+    <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-stone-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8
+                h-16 flex items-center justify-between gap-4">
+
+        <!-- Tombol Menu -->
+        <button type="button" onclick="toggleMobileMenu()" aria-label="Buka menu navigasi"
+    class="flex items-center gap-2 text-left shrink-0 rounded-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-600">
+
+    <!-- Logo HARA STORE -->
+    <img src="Logo-hara.jpeg"
+        alt="Logo HARA STORE"
+        class="w-9 h-9 object-contain shrink-0">
+
+    <!-- Nama Toko -->
+    <div class="text-left">
+        <span class="font-bold text-xl tracking-tight text-stone-900 block leading-none">HARA STORE</span>
+        <span class="text-[10px] tracking-widest uppercase text-amber-700 font-semibold">Bogor Retail</span>
+    </div>
+</button>
+
+
+            <!-- Desktop Navigation -->
+            <nav class="hidden lg:flex items-center gap-8 font-medium text-sm">
+                <button onclick="navigate('home')" class="nav-btn hover:text-amber-700 transition" data-view="home">Beranda</button>
+                <button onclick="navigate('catalog', 'Sepatu')" class="nav-btn hover:text-amber-700 transition" data-view="catalog-sepatu">Sepatu</button>
+                <button onclick="navigate('catalog', 'Sandal')" class="nav-btn hover:text-amber-700 transition" data-view="catalog-sandal">Sandal</button>
+                <button onclick="navigate('catalog', 'Tas')" class="nav-btn hover:text-amber-700 transition" data-view="catalog-tas">Tas</button>
+                <button onclick="navigate('about')" class="nav-btn hover:text-amber-700 transition" data-view="about">Tentang Kami</button>
+            </nav>
+
+            <!-- Right Actions -->
+            <div class="flex items-center gap-2 sm:gap-3">
+                <!-- Search Input Desktop -->
+                <div class="relative hidden sm:block w-48 lg:w-60">
+                    <input type="text" id="navbar-search" placeholder="Cari sepatu, tas..." onkeyup="handleQuickSearch(event)"
+                        class="w-full pl-9 pr-3 py-1.5 text-xs bg-stone-100 border border-stone-200 rounded-full focus:outline-none focus:border-amber-600 focus:bg-white transition">
+                    <i data-lucide="search" class="w-4 h-4 text-stone-400 absolute left-3 top-2"></i>
+                </div>
+
+                <!-- Account Button -->
+                <button onclick="navigate('account')" class="p-2 text-stone-700 hover:text-amber-700 hover:bg-stone-100 rounded-full transition relative">
+                    <i data-lucide="user" class="w-5 h-5"></i>
+                </button>
+
+                <!-- Admin Dashboard Access -->
+                <button onclick="navigate('admin')" title="Login Admin" aria-label="Login Admin" class="p-2 text-stone-700 hover:text-amber-700 hover:bg-stone-100 rounded-full transition bg-stone-100">
+                    <i data-lucide="layout-dashboard" class="w-5 h-5"></i>
+                </button>
+
+                <!-- Cart Button -->
+                <button onclick="toggleCartDrawer()" class="p-2 text-stone-700 hover:text-amber-700 hover:bg-stone-100 rounded-full transition relative">
+                    <i data-lucide="shopping-bag" class="w-5 h-5"></i>
+                    <span id="cart-badge" class="absolute top-0 right-0 bg-amber-700 text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center border-2 border-white hidden">0</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Quick Search -->
+        <div class="sm:hidden px-4 pb-3">
+            <div class="relative">
+                <input type="text" id="navbar-search-mobile" placeholder="Cari sepatu, sandal, atau tas..." onkeyup="handleQuickSearch(event)"
+                    class="w-full pl-9 pr-3 py-2 text-xs bg-stone-100 border border-stone-200 rounded-xl focus:outline-none focus:border-amber-600">
+                <i data-lucide="search" class="w-4 h-4 text-stone-400 absolute left-3 top-2.5"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- MOBILE NAVIGATION SIDEBAR -->
+    <div id="mobile-menu" class="fixed inset-0 bg-stone-900/50 backdrop-blur-sm z-50 hidden transition-opacity">
+        <div class="w-4/5 max-w-xs bg-white h-full shadow-2xl p-6 flex flex-col justify-between">
+            <div>
+                <div class="flex items-center justify-between pb-6 border-b border-stone-100">
+                    <div class="flex items-center gap-2">
+                        <div class="bg-amber-700 text-white w-8 h-8 rounded-lg flex items-center justify-center font-bold">H</div>
+                        <span class="font-bold text-stone-900">HARA STORE</span>
+                    </div>
+                    <button onclick="toggleMobileMenu()" class="p-1 text-stone-400 hover:text-stone-700">
+                        <i data-lucide="x" class="w-6 h-6"></i>
+                    </button>
+                </div>
+                <nav class="mt-6 flex flex-col gap-4 font-medium text-stone-700">
+                    <button onclick="navigate('home'); toggleMobileMenu();" class="text-left py-2 hover:text-amber-700 flex items-center gap-3"><i data-lucide="home" class="w-4 h-4"></i> Beranda</button>
+                    <button onclick="navigate('catalog', 'Sepatu'); toggleMobileMenu();" class="text-left py-2 hover:text-amber-700 flex items-center gap-3"><i data-lucide="footprints" class="w-4 h-4"></i> Sepatu</button>
+                    <button onclick="navigate('catalog', 'Sandal'); toggleMobileMenu();" class="text-left py-2 hover:text-amber-700 flex items-center gap-3"><i data-lucide="sun" class="w-4 h-4"></i> Sandal</button>
+                    <button onclick="navigate('catalog', 'Tas'); toggleMobileMenu();" class="text-left py-2 hover:text-amber-700 flex items-center gap-3"><i data-lucide="briefcase" class="w-4 h-4"></i> Tas</button>
+                    <button onclick="navigate('about'); toggleMobileMenu();" class="text-left py-2 hover:text-amber-700 flex items-center gap-3"><i data-lucide="info" class="w-4 h-4"></i> Tentang Kami</button>
+                    <button onclick="navigate('admin'); toggleMobileMenu();" class="text-left py-2 text-amber-800 font-semibold flex items-center gap-3"><i data-lucide="shield" class="w-4 h-4"></i> Area Admin</button>
+                </nav>
+            </div>
+            <div class="pt-6 border-t border-stone-100 text-xs text-stone-500">
+                <p class="font-medium text-stone-800 mb-1">HARA STORE - Pasar Ciawi</p>
+                <p>Bogor, Jawa Barat</p>
+                <p class="mt-2 text-amber-700 font-medium">IG: @harastoree._</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN VIEW CONTAINER -->
+    <main id="app-view" class="flex-1">
+        <!-- Content injected dynamically via JS -->
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-stone-900 text-stone-300 pt-12 pb-8 border-t border-stone-800 mt-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 pb-12 border-b border-stone-800">
+                <!-- Brand Info -->
+                <div class="space-y-4">
+                    <div class="flex items-center gap-2">
+                        <img src="Logo-hara.jpeg"
+                            alt="Logo HARA STORE"
+                            class="w-9 h-9 object-contain shrink-0">
+                        <span class="font-bold text-xl text-white tracking-tight">HARA STORE</span>
+                    </div>
+                    <p class="text-stone-400 text-sm leading-relaxed">
+                        Pusat retail fashion terjangkau dan berkualitas di Pasar Ciawi, Bogor. Menyediakan koleksi sepatu, sandal, dan tas terbaik untuk gaya harian Anda.
+                    </p>
+                    <a href="https://instagram.com/harastoree._" target="_blank" class="inline-flex items-center gap-2 text-xs text-amber-400 hover:underline">
+                        <i data-lucide="instagram" class="w-4 h-4"></i> @harastoree._
+                        
+                        <a href="https://www.tiktok.com/@harastore._" target="_blank" class="inline-flex items-center gap-2 text-xs text-amber-400 hover:underline">
+                        <i data-lucide="instagram" class="w-4 h-4"></i> @harastore._
+                    </a>
+                </div>
+
+                <!-- Navigation -->
+                <div>
+                    <h3 class="text-white font-semibold text-sm mb-4 uppercase tracking-wider">Kategori Produk</h3>
+                    <ul class="space-y-2 text-sm text-stone-400">
+                        <li><button onclick="navigate('catalog', 'Sepatu')" class="hover:text-amber-400 transition">Koleksi Sepatu</button></li>
+                        <li><button onclick="navigate('catalog', 'Sandal')" class="hover:text-amber-400 transition">Koleksi Sandal</button></li>
+                        <li><button onclick="navigate('catalog', 'Tas')" class="hover:text-amber-400 transition">Koleksi Tas</button></li>
+                        <li><button onclick="navigate('catalog')" class="hover:text-amber-400 transition">Semua Produk</button></li>
+                    </ul>
+                </div>
+
+                <!-- Customer Care -->
+                <div>
+                    <h3 class="text-white font-semibold text-sm mb-4 uppercase tracking-wider">Layanan Pelanggan</h3>
+                    <ul class="space-y-2 text-sm text-stone-400">
+                        <li><a href="#" onclick="alert('Informasi Pengiriman: Dikirim dari Pasar Ciawi, Bogor via JNE, J&T, & Sicepat.'); return false;" class="hover:text-amber-400">Info Pengiriman</a></li>
+                        <li><a href="#" onclick="alert('Kebijakan Pengembalian: Retur berlaku maksimal 3 hari setelah barang diterima dengan sertakan video unboxing.'); return false;" class="hover:text-amber-400">Kebijakan Pengembalian</a></li>
+                        <li><a href="#" onclick="navigate('about')" class="hover:text-amber-400">Lokasi Toko Fisik</a></li>
+                        <li><a href="#" onclick="navigate('account')" class="hover:text-amber-400">Lacak Pesanan</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact & Physical Store -->
+                <div class="space-y-3 text-sm text-stone-400">
+                    <h3 class="text-white font-semibold text-sm mb-4 uppercase tracking-wider">Toko Fisik</h3>
+                    <p class="flex items-start gap-2">
+                        <i data-lucide="map-pin" class="w-4 h-4 text-amber-500 shrink-0 mt-0.5"></i>
+                        <span>Pasar Ciawi, Lantai Dasar, Kec. Ciawi, Kabupaten Bogor, Jawa Barat 16720</span>
+                    </p>
+                    <p class="flex items-center gap-2">
+                        <i data-lucide="clock" class="w-4 h-4 text-amber-500 shrink-0"></i>
+                        <span>Buka Setiap Hari: 08.00 - 17.00 WIB</span>
+                    </p>
+                    <p class="flex items-center gap-2">
+                        <i data-lucide="phone" class="w-4 h-4 text-amber-500 shrink-0"></i>
+                        <span>+62 812-3456-7890</span>
+                    </p>
+                </div>
+            </div>
+
+            <!-- Bottom Copyright -->
+            <div class="pt-8 text-xs text-center text-stone-500 flex flex-col sm:flex-row justify-between items-center gap-4">
+                <p>&copy; 2026 HARA STORE. Hak Cipta Dilindungi Undang-Undang.</p>
+                <div class="flex gap-4">
+                    <span>Sepatu</span> • <span>Sandal</span> • <span>Tas</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- CART SLIDE-OVER DRAWER -->
+    <div id="cart-drawer" class="fixed inset-0 bg-stone-900/50 backdrop-blur-sm z-50 hidden transition-opacity">
+        <div class="absolute inset-y-0 right-0 max-w-full flex pl-10">
+            <div class="w-screen max-w-md bg-white shadow-xl flex flex-col">
+                <div class="p-6 border-b border-stone-100 flex items-center justify-between">
+                    <div class="flex items-center gap-2">
+                        <i data-lucide="shopping-bag" class="w-5 h-5 text-amber-700"></i>
+                        <h2 class="font-bold text-lg text-stone-900">Keranjang Belanja</h2>
+                    </div>
+                    <button onclick="toggleCartDrawer()" class="p-1 text-stone-400 hover:text-stone-700">
+                        <i data-lucide="x" class="w-6 h-6"></i>
+                    </button>
+                </div>
+
+                <!-- Items Container -->
+                <div id="cart-items-container" class="flex-1 overflow-y-auto p-6 space-y-4">
+                    <!-- Dynamic cart items loaded here -->
+                </div>
+
+                <!-- Cart Footer Summary -->
+                <div class="p-6 border-t border-stone-100 bg-stone-50 space-y-4">
+                    <div class="flex justify-between text-sm text-stone-600">
+                        <span>Subtotal Produk</span>
+                        <span id="cart-subtotal" class="font-semibold text-stone-900">Rp 0</span>
+                    </div>
+                    <p class="text-xs text-stone-500">Ongkos kirim dan pajak dihitung saat checkout.</p>
+                    <button onclick="proceedToCheckout()" id="btn-checkout" class="w-full py-3 bg-amber-700 hover:bg-amber-800 text-white font-medium rounded-xl transition shadow-sm disabled:opacity-50">
+                        Lanjut ke Checkout
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- QUICK PRODUCT DETAIL MODAL -->
+    <div id="product-modal" class="fixed inset-0 bg-stone-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-3xl w-full max-h-[90vh] overflow-y-auto shadow-2xl relative p-6 sm:p-8" id="product-modal-content">
+            <!-- Modal details injected here -->
+        </div>
+    </div>
+
+    <!-- TOAST NOTIFICATION CONTAINER -->
+    <div id="toast-container" class="fixed bottom-5 right-5 z-50 flex flex-col gap-2 pointer-events-none"></div>
+
+    <!-- APPLICATION JAVASCRIPT LOGIC -->
+    <script>
+        /* ==========================================
+           1. INITIAL STATE & SEED DATA (LOCAL STORAGE)
+           ========================================== */
+        const DEFAULT_PRODUCTS = [
+            {
+                id: "prod-1",
+                name: "Sepatu Sneaker Kasual Urban Canvas",
+                category: "Sepatu",
+                price: 185000,
+                originalPrice: 220000,
+                rating: 4.8,
+                sold: 142,
+                image: "https://images.unsplash.com/photo-1549298916-b41d501d3772?auto=format&fit=crop&w=800&q=80",
+                description: "Sepatu sneaker kasual berbahan canvas premium yang breathable dan nyaman digunakan untuk aktivitas harian, kuliah, maupun nongkrong. Sol karet lentur dan anti selip.",
+                sizes: ["38", "39", "40", "41", "42", "43"],
+                colors: ["Hitam", "Putih", "Navy"],
+                stock: 25,
+                isFeatured: true,
+                isNew: true
+            },
+            {
+                id: "prod-2",
+                name: "Sepatu Loafer Formal Modern Male",
+                category: "Sepatu",
+                price: 245000,
+                originalPrice: 299000,
+                rating: 4.9,
+                sold: 89,
+                image: "https://images.unsplash.com/photo-1614252235316-8c857d38b5f4?auto=format&fit=crop&w=800&q=80",
+                description: "Sepatu formal model loafer slip-on elegan. Bahan sintetis kulit halus dengan insole empuk. Cocok untuk kerja, acara resmi, maupun gaya semi-formal.",
+                sizes: ["39", "40", "41", "42", "43"],
+                colors: ["Hitam", "Cokelat Tua"],
+                stock: 18,
+                isFeatured: true,
+                isNew: false
+            },
+            {
+                id: "prod-3",
+                name: "Sepatu Running Active Sport Light",
+                category: "Sepatu",
+                price: 195000,
+                originalPrice: 240000,
+                rating: 4.7,
+                sold: 210,
+                image: "sepatu running.jpeg",
+                description: "Sepatu olahraga/jogging ringan dengan bantalan eva berteknologi absorb benturan. Desain aerodinamis dan warna sporty maskulin.",
+                sizes: ["37", "38", "39", "40", "41", "42"],
+                colors: ["Merah-Hitam", "Full Black"],
+                stock: 30,
+                isFeatured: true,
+                isNew: true
+            },
+            {
+                id: "prod-4",
+                name: "Patent Mary Jane Flats Black",
+                category: "Sandal",
+                price: 150000,
+                rating: 4.9,
+                sold: 305,
+                image: "Sepatu Hitam.jpe",
+                description: "Sandal gunung pria dan wanita tangguh untuk segala medan. Webbing kuat dengan quick-dry teknologi dan sol bawah grip anti slip.",
+                sizes: ["38", "39", "40", "41", "42"],
+                colors: ["Hitam Polos", "Army"],
+                stock: 45,
+                isFeatured: true,
+                isNew: false
+            },
+            {
+                id: "prod-5",
+                name: "Ruffle Heart Mules Beige ",
+                category: "Sandal",
+                price: 150000,
+                rating: 4.6,
+                sold: 450,
+                image: "Gravici.jpeg",
+                description: "Tampil cantik dan feminin dengan mules kekinian dari Gravici! Didesain dengan aksen kerut (ruffle) dan gesper hati berornamen kristal mewah yang bikin penampilan kamu makin stand out.",
+                sizes: ["36", "37", "38", "39", "40"],
+                colors: ["Cream"],
+                stock: 25,
+                isFeatured: false,
+                isNew: true
+            },
+            {
+                id: "prod-6",
+                name: "Aretha Ribbon Flat Shoes Beige",
+                category: "Sandal",
+                price: 130000,
+                rating: 4.8,
+                sold: 98,
+                image: "Aretha.jpeg",
+                description: "Flat shoes simpel dan manis yang wajib ada di rak sepatu kamu! Dihiasi pita bersimpul dengan ujung emas yang memberikan sentuhan elegan dan elegan untuk daily look.",
+                sizes: ["36", "37", "38", "39", "40"],
+                colors: ["Cream"],
+                stock: 30,
+                isFeatured: true,
+                isNew: false
+            },
+            {
+                id: "prod-7",
+                name: "Tas Ransel Laptop School & Campus 20L",
+                category: "Tas",
+                price: 175000,
+                originalPrice: 210000,
+                rating: 4.9,
+                sold: 180,
+                image: "Tas.jpe",
+                description: "Tas punggung ransel dengan slot khusus laptop hingga 15.6 inch. Bahan polyester tahan cipratan air (water-repellent) dilengkapi saku botol samping.",
+                sizes: ["All Size (20 Liter)"],
+                colors: ["Hitam", "Navy", "Abu-abu"],
+                stock: 35,
+                isFeatured: true,
+                isNew: true
+            },
+            {
+                id: "prod-8",
+                name: "Tas Selempang Sling Bag Minimalist",
+                category: "Tas",
+                price: 89000,
+                originalPrice: 110000,
+                rating: 4.7,
+                sold: 230,
+                image: "https://images.unsplash.com/photo-1548036328-c9fa89d128fa?auto=format&fit=crop&w=800&q=80",
+                description: "Tas selempang praktis untuk membawa dompet, HP, kunci, dan barang esensial harian. Kompartemen rapi dengan resleting tahan lama.",
+                sizes: ["All Size"],
+                colors: ["Hitam", "Krem", "Olive"],
+                stock: 40,
+                isFeatured: false,
+                isNew: false
+            },
+            {
+                id: "prod-9",
+                name: "Tas Tangan Handbag Tote Wanita Chic",
+                category: "Tas",
+                price: 145000,
+                originalPrice: 180000,
+                rating: 4.8,
+                sold: 115,
+                image: "https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=800&q=80",
+                description: "Tas tote/handbag wanita elegan berbahan synthetic leather tebal. Ruang dalam luas, cocok untuk kerja, hangout, maupun bepergian.",
+                sizes: ["Medium Size"],
+                colors: ["Krem Beige", "Cokelat", "Hitam"],
+                stock: 20,
+                isFeatured: true,
+                isNew: true
+            },
+            {
+                id: "prod-10",
+                name: "Sepatu Gunung Kidul",
+                category: "Sepatu",
+                price: 265000,
+                originalPrice: 320000,
+                rating: 4.9,
+                sold: 65,
+                image: "https://images.unsplash.com/photo-1520639888713-7851133b1ed0?auto=format&fit=crop&w=800&q=80",
+                description: "Sepatu bot tinggi gaya maskulin vintage. Menggunakan sol karet tebal yang tahan gesekan serta tali yang kokoh.",
+                sizes: ["39", "40", "41", "42", "43"],
+                colors: ["Tan Cokelat", "Hitam"],
+                stock: 12,
+                isFeatured: false,
+                isNew: false
+            },
+            {
+                id: "prod-11",
+                name: "Sandal Gunung Wanita",
+                category: "Sandal",
+                price: 105000,
+                rating: 4.5,
+                sold: 380,
+                image: "Sandal Gunung.jpe",
+                description: "Sandal jepit santai dengan bantalan karet rubber berkualitas tinggi. Tahan lama, empuk, dan tidak membuat kaki lecet.",
+                sizes: ["38", "39", "40", "41", "42"],
+                colors: ["Cream"],
+                stock: 50,
+                isFeatured: false,
+                isNew: false
+            },  
+            {
+                id: "prod-12",
+                name: "Tas Waistbag Sporty Travel Pouch",
+                category: "Tas",
+                price: 79000,
+                originalPrice: 99000,
+                rating: 4.7,
+                sold: 195,
+                image: "https://images.unsplash.com/photo-1622560480605-d83c853bc5c3?auto=format&fit=crop&w=800&q=80",
+                description: "Tas pinggang/dada serbaguna. Cocok untuk gowes, jalan-jalan, dan travel. Tali strap dapat disesuaikan dengan mudah.",
+                sizes: ["All Size"],
+                colors: ["Hitam", "Navy"],
+                stock: 28,
+                isFeatured: false,
+                isNew: true
+            }
+        ];
+
+        // State Management
+        let appState = {
+            products: DEFAULT_PRODUCTS,
+            cart: JSON.parse(localStorage.getItem('hara_cart')) || [],
+            orders: JSON.parse(localStorage.getItem('hara_orders')) || [
+                {
+                    id: "ORD-92817",
+                    date: "2026-03-24 14:20",
+                    customer: { name: "Budi Santoso", phone: "08123456789", address: "Jl. Raya Ciawi No. 12, Bogor" },
+                    items: [
+                        { name: "Sepatu Sneaker Kasual Urban Canvas", price: 185000, qty: 1, size: "41", color: "Hitam" }
+                    ],
+                    total: 195000,
+                    status: "Diproses",
+                    paymentMethod: "QRIS Demo"
+                }
+            ],
+            promoBanner: JSON.parse(localStorage.getItem('hara_promo')) || "🎉 PROMO SPESIAL PASAR CIAWI: Diskon s/d 20% & Ongkir Murah Seluruh Wilayah Bogor!",
+            currentView: 'home',
+            filterCategory: 'Semua',
+            searchQuery: '',
+            priceMax: 350000,
+            selectedSize: '',
+            selectedColor: '',
+            sortOrder: 'default',
+            adminLoggedIn: sessionStorage.getItem('hara_admin_logged_in') === 'true'
+        };
+
+        // Save state to local storage helper
+        function saveState() {
+            // localStorage.setItem('hara_products', JSON.stringify(appState.products));
+            localStorage.setItem('hara_cart', JSON.stringify(appState.cart));
+            localStorage.setItem('hara_orders', JSON.stringify(appState.orders));
+            localStorage.setItem('hara_promo', JSON.stringify(appState.promoBanner));
+            updateCartBadge();
+        }
+
+        /* ==========================================
+           2. ROUTING & NAVIGATION SYSTEM
+           ========================================== */
+        function navigate(view, categoryParam = 'Semua') {
+            appState.currentView = view;
+            if (categoryParam !== 'Semua') {
+                appState.filterCategory = categoryParam;
+            }
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            renderView();
+        }
+
+        function renderView() {
+            const container = document.getElementById('app-view');
+            
+            // Highlight active nav link
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.classList.remove('text-amber-700', 'font-semibold', 'border-b-2', 'border-amber-700');
+            });
+
+            switch (appState.currentView) {
+                case 'home':
+                    container.innerHTML = renderHomepage();
+                    break;
+                case 'catalog':
+                    container.innerHTML = renderCatalogPage();
+                    break;
+                case 'about':
+                    container.innerHTML = renderAboutPage();
+                    break;
+                case 'account':
+                    container.innerHTML = renderAccountPage();
+                    break;
+                case 'checkout':
+                    container.innerHTML = renderCheckoutPage();
+                    break;
+                case 'admin':
+                    container.innerHTML = appState.adminLoggedIn ? renderAdminDashboard() : renderAdminLogin();
+                    break;
+                default:
+                    container.innerHTML = renderHomepage();
+            }
+
+            // Re-initialize Lucide Icons
+            lucide.createIcons();
+            updateCartBadge();
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        function handleQuickSearch(e) {
+            const query = e.target.value;
+            if (e.key === 'Enter' || query.length > 2) {
+                appState.searchQuery = query;
+                appState.currentView = 'catalog';
+                renderView();
+            }
+        }
+
+        /* ==========================================
+           3. HOMEPAGE VIEW RENDERER
+           ========================================== */
+        function renderHomepage() {
+            const featuredProducts = appState.products.filter(p => p.isFeatured).slice(0, 4);
+            const latestProducts = [...appState.products].reverse().slice(0, 4);
+
+            return `
+                <!-- Dynamic Promo Banner -->
+                <div class="bg-amber-100 border-y border-amber-200 text-amber-900 py-2.5 px-4 text-center text-xs sm:text-sm font-medium flex items-center justify-center gap-2">
+                    <i data-lucide="tag" class="w-4 h-4 text-amber-700 shrink-0"></i>
+                    <span>${appState.promoBanner}</span>
+                </div>
+
+                <!-- Hero Section -->
+                <section class="relative bg-stone-900 text-white overflow-hidden py-16 lg:py-24">
+                    <div class="absolute inset-0 mix-blend-overlay">
+                        <img src="Header hara.png" class="w-full h-full object-cover" alt="Background">     
+                    </div>
+                    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                        <div class="space-y-6 text-center lg:text-left">
+                            <span class="inline-block bg-amber-700/80 text-amber-100 text-xs px-3 py-1 rounded-full uppercase tracking-wider font-semibold border border-amber-500/30">
+                                Official Online Store • Pasar Ciawi Bogor
+                            </span>
+                            <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight leading-tight">
+                                Temukan Gaya Favoritmu Bersama <span class="text-amber-400">HARA STORE</span>
+                            </h1>
+                            <p class="text-stone-300 text-sm sm:text-base leading-relaxed max-w-xl mx-auto lg:mx-0">
+                                Pilihan koleksi sepatu, sandal, dan tas terbaik untuk menemani aktivitas harian Anda dengan kenyamanan maksimal dan harga yang ramah di kantong.
+                            </p>
+                            <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start pt-2">
+                                <button onclick="navigate('catalog')" class="px-7 py-3.5 bg-amber-700 hover:bg-amber-600 text-white font-semibold rounded-xl shadow-lg transition flex items-center justify-center gap-2">
+                                    Belanja Sekarang <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                                </button>
+                                <button onclick="document.getElementById('categories-section').scrollIntoView({behavior: 'smooth'})" class="px-7 py-3.5 bg-white/10 hover:bg-white/20 text-white font-semibold rounded-xl backdrop-blur-sm transition border border-white/20">
+                                    Jelajahi Koleksi
+                                </button>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-2 gap-4 relative">
+                            <img src="Tas.jpe" class="rounded-2xl object-cover shadow-2xl h-56 sm:h-64 w-full transform -rotate-2 hover:rotate-0 transition duration-300" alt="Sepatu">
+                            <img src="Sepatu lokal.jpe" class="rounded-2xl object-cover shadow-2xl h-56 sm:h-64 w-full transform rotate-3 hover:rotate-0 transition duration-300 mt-6" alt="Tas">
+                        </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Category Cards Section -->
+                <section id="categories-section" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+                    <div class="text-center max-w-2xl mx-auto mb-12">
+                        <h2 class="text-2xl sm:text-3xl font-bold text-stone-900 tracking-tight">Kategori Utama</h2>
+                        <p class="text-stone-500 text-sm mt-2">Pilih kategori produk retail eksklusif HARA STORE</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <!-- Sepatu -->
+                        <div onclick="navigate('catalog', 'Sepatu')" class="group relative rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition cursor-pointer bg-stone-900 text-white h-80">
+                            <img src="Sepatu Cover.jpeg" alt="Kategori Sepatu">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent p-6 flex flex-col justify-end">
+                                <span class="text-amber-400 text-xs font-semibold uppercase tracking-wider">Paling Laris</span>
+                                <h3 class="text-2xl font-bold mt-1">Koleksi Sepatu</h3>
+                                <p class="text-stone-300 text-xs mt-1">Sneaker, Formal Loafer, & Sepatu Olahraga</p>
+                                <div class="mt-4 inline-flex items-center gap-2 text-xs font-bold text-white group-hover:text-amber-400 transition">
+                                    Lihat Koleksi <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Sandal -->
+                        <div onclick="navigate('catalog', 'Sandal')" class="group relative rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition cursor-pointer bg-stone-900 text-white h-80">
+                            <img src="sendal cover.jpeg" alt="Kategori Sandal">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent p-6 flex flex-col justify-end">
+                                <span class="text-amber-400 text-xs font-semibold uppercase tracking-wider">Nyaman & Praktis</span>
+                                <h3 class="text-2xl font-bold mt-1">Koleksi Sandal</h3>
+                                <p class="text-stone-300 text-xs mt-1">Sandal Gunung, Slop EVA, & Sandal Tali</p>
+                                <div class="mt-4 inline-flex items-center gap-2 text-xs font-bold text-white group-hover:text-amber-400 transition">
+                                    Lihat Koleksi <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Tas -->
+                        <div onclick="navigate('catalog', 'Tas')" class="group relative rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition cursor-pointer bg-stone-900 text-white h-80">
+                            <img src="Tas cover.jpeg" class="w-full h-full object-cover group-hover:scale-110 opacity-70 transition duration-500" alt="Kategori Tas">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent p-6 flex flex-col justify-end">
+                                <span class="text-amber-400 text-xs font-semibold uppercase tracking-wider">Fungsional</span>
+                                <h3 class="text-2xl font-bold mt-1">Koleksi Tas</h3>
+                                <p class="text-stone-300 text-xs mt-1">Ransel Laptop, Slingbag, & Handbag</p>
+                                <div class="mt-4 inline-flex items-center gap-2 text-xs font-bold text-white group-hover:text-amber-400 transition">
+                                    Lihat Koleksi <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Featured Products Grid -->
+                <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 border-t border-stone-200">
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-end mb-8 gap-4">
+                        <div>
+                            <span class="text-amber-700 text-xs font-bold uppercase tracking-wider">Rekomendasi Terbaik</span>
+                            <h2 class="text-2xl font-bold text-stone-900 mt-1">Produk Unggulan</h2>
+                        </div>
+                        <button onclick="navigate('catalog')" class="text-xs font-bold text-amber-700 hover:text-amber-800 flex items-center gap-1">
+                            Lihat Semua Produk <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+
+                    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+                        ${featuredProducts.map(p => renderProductCardHTML(p)).join('')}
+                    </div>
+                </section>
+
+                <!-- Value Propositions / Keunggulan -->
+                <section class="bg-stone-100 py-16 border-y border-stone-200">
+                    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <div class="text-center max-w-2xl mx-auto mb-12">
+                            <h2 class="text-2xl font-bold text-stone-900">Mengapa Memilih HARA STORE?</h2>
+                            <p class="text-stone-500 text-sm mt-1">Komitmen kami memberikan pengalaman belanja retail terbaik di Bogor</p>
+                        </div>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                            <div class="bg-white p-6 rounded-2xl border border-stone-200 shadow-sm text-center">
+                                <div class="w-12 h-12 bg-amber-100 text-amber-700 rounded-xl flex items-center justify-center mx-auto mb-4">
+                                    <i data-lucide="grid" class="w-6 h-6"></i>
+                                </div>
+                                <h3 class="font-bold text-stone-900 text-base mb-1">Pilihan Beragam</h3>
+                                <p class="text-stone-500 text-xs leading-relaxed">Variasi model sepatu, sandal, dan tas terlengkap sesuai kebutuhan tren modern.</p>
+                            </div>
+
+                            <div class="bg-white p-6 rounded-2xl border border-stone-200 shadow-sm text-center">
+                                <div class="w-12 h-12 bg-amber-100 text-amber-700 rounded-xl flex items-center justify-center mx-auto mb-4">
+                                    <i data-lucide="dollar-sign" class="w-6 h-6"></i>
+                                </div>
+                                <h3 class="font-bold text-stone-900 text-base mb-1">Harga Terjangkau</h3>
+                                <p class="text-stone-500 text-xs leading-relaxed">Kualitas barang terjamin dengan harga bersahabat untuk semua kalangan usia.</p>
+                            </div>
+
+                            <div class="bg-white p-6 rounded-2xl border border-stone-200 shadow-sm text-center">
+                                <div class="w-12 h-12 bg-amber-100 text-amber-700 rounded-xl flex items-center justify-center mx-auto mb-4">
+                                    <i data-lucide="map-pin" class="w-6 h-6"></i>
+                                </div>
+                                <h3 class="font-bold text-stone-900 text-base mb-1">Toko Fisik Jelas</h3>
+                                <p class="text-stone-500 text-xs leading-relaxed">Berlokasi strategis di Pasar Ciawi Bogor. Siap melayani pembelian offline & online.</p>
+                            </div>
+
+                            <div class="bg-white p-6 rounded-2xl border border-stone-200 shadow-sm text-center">
+                                <div class="w-12 h-12 bg-amber-100 text-amber-700 rounded-xl flex items-center justify-center mx-auto mb-4">
+                                    <i data-lucide="truck" class="w-6 h-6"></i>
+                                </div>
+                                <h3 class="font-bold text-stone-900 text-base mb-1">Pengiriman Cepat</h3>
+                                <p class="text-stone-500 text-xs leading-relaxed">Pesanan dikemas rapi dan dikirim cepat via ekspedisi terpercaya seluruh Indonesia.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Latest Products Section -->
+                <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+                    <div class="flex justify-between items-end mb-8">
+                        <div>
+                            <span class="text-amber-700 text-xs font-bold uppercase tracking-wider">Koleksi Terbaru</span>
+                            <h2 class="text-2xl font-bold text-stone-900 mt-1">Produk Baru Ditambahkan</h2>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+                        ${latestProducts.map(p => renderProductCardHTML(p)).join('')}
+                    </div>
+                </section>
+            `;
+        }
+
+        /* ==========================================
+           4. PRODUCT CATALOG & FILTERING VIEW
+           ========================================== */
+        function renderCatalogPage() {
+            // Apply filtering logic
+            let filtered = appState.products.filter(p => {
+                const matchCategory = appState.filterCategory === 'Semua' || p.category === appState.filterCategory;
+                const matchSearch = p.name.toLowerCase().includes(appState.searchQuery.toLowerCase()) ||
+                                    p.description.toLowerCase().includes(appState.searchQuery.toLowerCase());
+                const matchPrice = p.price <= appState.priceMax;
+                const matchSize = !appState.selectedSize || (p.sizes && p.sizes.includes(appState.selectedSize));
+                const matchColor = !appState.selectedColor || (p.colors && p.colors.includes(appState.selectedColor));
+
+                return matchCategory && matchSearch && matchPrice && matchSize && matchColor;
+            });
+
+            // Sorting
+            if (appState.sortOrder === 'price-low') {
+                filtered.sort((a, b) => a.price - b.price);
+            } else if (appState.sortOrder === 'price-high') {
+                filtered.sort((a, b) => b.price - a.price);
+            } else if (appState.sortOrder === 'newest') {
+                filtered.reverse();
+            }
+
+            return `
+                <div class="bg-stone-100 border-b border-stone-200 py-6">
+                    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <h1 class="text-2xl font-bold text-stone-900">Katalog Produk HARA STORE</h1>
+                        <p class="text-stone-500 text-xs mt-1">Temukan sepatu, sandal, dan tas sesuai anggaran dan gayamu</p>
+                    </div>
+                </div>
+
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+                    <div class="flex flex-col lg:flex-row gap-8">
+                        <!-- Sidebar Filters -->
+                        <aside class="w-full lg:w-64 bg-white p-6 rounded-2xl border border-stone-200 shadow-sm h-fit space-y-6 shrink-0">
+                            <div class="flex justify-between items-center pb-4 border-b border-stone-100">
+                                <h2 class="font-bold text-stone-900 flex items-center gap-2">
+                                    <i data-lucide="filter" class="w-4 h-4 text-amber-700"></i> Filter Produk
+                                </h2>
+                                <button onclick="resetFilters()" class="text-xs text-amber-700 hover:underline font-medium">Reset</button>
+                            </div>
+
+                            <!-- Category Filter -->
+                            <div>
+                                <label class="block text-xs font-bold uppercase text-stone-500 mb-2">Kategori</label>
+                                <div class="space-y-1">
+                                    ${['Semua', 'Sepatu', 'Sandal', 'Tas'].map(cat => `
+                                        <button onclick="setCategoryFilter('${cat}')" class="w-full text-left px-3 py-2 text-xs rounded-xl flex justify-between items-center ${appState.filterCategory === cat ? 'bg-amber-100 text-amber-900 font-bold' : 'text-stone-600 hover:bg-stone-50'}">
+                                            <span>${cat}</span>
+                                            <span class="text-[10px] text-stone-400">
+                                                ${cat === 'Semua' ? appState.products.length : appState.products.filter(p => p.category === cat).length}
+                                            </span>
+                                        </button>
+                                    `).join('')}
+                                </div>
+                            </div>
+
+                            <!-- Price Range Filter -->
+                            <div>
+                                <div class="flex justify-between items-center mb-2">
+                                    <label class="text-xs font-bold uppercase text-stone-500">Maks. Harga</label>
+                                    <span class="text-xs font-bold text-amber-800">Rp ${Number(appState.priceMax).toLocaleString('id-ID')}</span>
+                                </div>
+                                <input type="range" min="30000" max="350000" step="10000" value="${appState.priceMax}" onchange="updatePriceFilter(this.value)" class="w-full accent-amber-700">
+                            </div>
+
+                            <!-- Size Filter -->
+                            <div>
+                                <label class="block text-xs font-bold uppercase text-stone-500 mb-2">Ukuran (Sepatu/Sandal)</label>
+                                <div class="grid grid-cols-4 gap-1.5">
+                                    ${['36', '37', '38', '39', '40', '41', '42', '43'].map(size => `
+                                        <button onclick="toggleSizeFilter('${size}')" class="py-1.5 text-xs rounded-lg border text-center transition ${appState.selectedSize === size ? 'border-amber-700 bg-amber-700 text-white font-bold' : 'border-stone-200 text-stone-600 hover:border-stone-300'}">
+                                            ${size}
+                                        </button>
+                                    `).join('')}
+                                </div>
+                            </div>
+
+                            <!-- Color Filter -->
+                            <div>
+                                <label class="block text-xs font-bold uppercase text-stone-500 mb-2">Warna Popular</label>
+                                <select onchange="updateColorFilter(this.value)" class="w-full p-2 text-xs border border-stone-200 rounded-xl bg-white focus:outline-none focus:border-amber-700">
+                                    <option value="">Semua Warna</option>
+                                    <option value="Hitam" ${appState.selectedColor === 'Hitam' ? 'selected' : ''}>Hitam</option>
+                                    <option value="Putih" ${appState.selectedColor === 'Putih' ? 'selected' : ''}>Putih</option>
+                                    <option value="Cokelat" ${appState.selectedColor === 'Cokelat' ? 'selected' : ''}>Cokelat</option>
+                                    <option value="Krem" ${appState.selectedColor === 'Krem' ? 'selected' : ''}>Krem / Beige</option>
+                                    <option value="Navy" ${appState.selectedColor === 'Navy' ? 'selected' : ''}>Navy</option>
+                                </select>
+                            </div>
+                        </aside>
+
+                        <!-- Main Content Grid -->
+                        <div class="flex-1 space-y-6">
+                            <!-- Top Control Bar -->
+                            <div class="bg-white p-4 rounded-2xl border border-stone-200 shadow-sm flex flex-col sm:flex-row justify-between items-center gap-4 text-xs">
+                                <div class="text-stone-600">
+                                    Menampilkan <strong class="text-stone-900">${filtered.length}</strong> produk ditemukan
+                                </div>
+                                <div class="flex items-center gap-3 w-full sm:w-auto">
+                                    <span class="text-stone-500 shrink-0">Urutkan:</span>
+                                    <select onchange="updateSortOrder(this.value)" class="w-full sm:w-auto p-2 border border-stone-200 rounded-xl bg-stone-50 font-medium focus:outline-none">
+                                        <option value="default" ${appState.sortOrder === 'default' ? 'selected' : ''}>Paling Relevan</option>
+                                        <option value="price-low" ${appState.sortOrder === 'price-low' ? 'selected' : ''}>Harga Terendah</option>
+                                        <option value="price-high" ${appState.sortOrder === 'price-high' ? 'selected' : ''}>Harga Tertinggi</option>
+                                        <option value="newest" ${appState.sortOrder === 'newest' ? 'selected' : ''}>Terbaru</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- Products Grid -->
+                            ${filtered.length > 0 ? `
+                                <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 sm:gap-6">
+                                    ${filtered.map(p => renderProductCardHTML(p)).join('')}
+                                </div>
+                            ` : `
+                                <div class="bg-white p-12 text-center rounded-2xl border border-stone-200 space-y-3">
+                                    <div class="w-12 h-12 bg-stone-100 text-stone-400 rounded-full flex items-center justify-center mx-auto">
+                                        <i data-lucide="search-x" class="w-6 h-6"></i>
+                                    </div>
+                                    <h3 class="font-bold text-stone-800">Produk Tidak Ditemukan</h3>
+                                    <p class="text-xs text-stone-500 max-w-sm mx-auto">Maaf, tidak ada produk yang cocok dengan kombinasi kata kunci atau filter pencarian Anda.</p>
+                                    <button onclick="resetFilters()" class="mt-2 px-4 py-2 bg-amber-700 text-white text-xs font-semibold rounded-xl">Reset Filter</button>
+                                </div>
+                            `}
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Filter Actions
+        function setCategoryFilter(cat) { appState.filterCategory = cat; renderView(); }
+        function updatePriceFilter(val) { appState.priceMax = parseInt(val); renderView(); }
+        function toggleSizeFilter(size) { appState.selectedSize = (appState.selectedSize === size) ? '' : size; renderView(); }
+        function updateColorFilter(col) { appState.selectedColor = col; renderView(); }
+        function updateSortOrder(order) { appState.sortOrder = order; renderView(); }
+        function resetFilters() {
+            appState.filterCategory = 'Semua';
+            appState.searchQuery = '';
+            appState.priceMax = 350000;
+            appState.selectedSize = '';
+            appState.selectedColor = '';
+            appState.sortOrder = 'default';
+            renderView();
+        }
+
+        /* Helper card item renderer */
+        function renderProductCardHTML(product) {
+            return `
+                <div class="bg-white rounded-2xl border border-stone-200 overflow-hidden shadow-sm hover:shadow-md transition flex flex-col group">
+                    <div class="relative overflow-hidden bg-stone-100 pt-[100%] cursor-pointer" onclick="openProductModal('${product.id}')">
+                        <img src="${product.image}" alt="${product.name}" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                        <span class="absolute top-2 left-2 bg-stone-900/80 text-white text-[10px] font-bold px-2 py-0.5 rounded-md backdrop-blur-sm">
+                            ${product.category}
+                        </span>
+                        ${product.originalPrice > product.price ? `
+                            <span class="absolute top-2 right-2 bg-red-600 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-md">
+                                SELE
+                            </span>
+                        ` : ''}
+                    </div>
+                    <div class="p-4 flex-1 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center gap-1 text-amber-500 text-[11px] mb-1">
+                                <i data-lucide="star" class="w-3 h-3 fill-amber-400"></i>
+                                <span class="font-bold text-stone-700">${product.rating}</span>
+                                <span class="text-stone-400">(${product.sold} terjual)</span>
+                            </div>
+                            <h3 onclick="openProductModal('${product.id}')" class="font-semibold text-stone-900 text-xs sm:text-sm line-clamp-2 hover:text-amber-700 cursor-pointer transition">
+                                ${product.name}
+                            </h3>
+                        </div>
+                        <div class="mt-3 pt-3 border-t border-stone-100 flex flex-col gap-2">
+                            <div>
+                                ${product.originalPrice > product.price ? `
+                                    <span class="text-[10px] text-stone-400 line-through block">Rp ${product.originalPrice.toLocaleString('id-ID')}</span>
+                                ` : ''}
+                                <span class="font-bold text-stone-900 text-sm sm:text-base text-amber-800">
+                                    Rp ${product.price.toLocaleString('id-ID')}
+                                </span>
+                            </div>
+                            <div class="flex gap-2">
+                                <button onclick="openProductModal('${product.id}')" class="flex-1 py-1.5 text-xs bg-stone-100 hover:bg-stone-200 text-stone-800 font-medium rounded-xl transition">
+                                    Detail
+                                </button>
+                                <button onclick="quickAddToCart('${product.id}')" class="p-1.5 bg-amber-700 hover:bg-amber-800 text-white rounded-xl transition shrink-0" title="Tambah ke Keranjang">
+                                    <i data-lucide="plus" class="w-4 h-4"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        /* ==========================================
+           5. PRODUCT DETAIL MODAL
+           ========================================== */
+        let currentModalState = { productId: null, selectedSize: null, selectedColor: null, qty: 1 };
+
+        function openProductModal(id) {
+            const product = appState.products.find(p => p.id === id);
+            if (!product) return;
+
+            currentModalState = {
+                productId: id,
+                selectedSize: product.sizes ? product.sizes[0] : null,
+                selectedColor: product.colors ? product.colors[0] : null,
+                qty: 1
+            };
+
+            const related = appState.products.filter(p => p.category === product.category && p.id !== product.id).slice(0, 3);
+
+            const modalContent = document.getElementById('product-modal-content');
+            modalContent.innerHTML = `
+                <button onclick="closeProductModal()" class="absolute top-4 right-4 p-1 text-stone-400 hover:text-stone-700 rounded-full">
+                    <i data-lucide="x" class="w-6 h-6"></i>
+                </button>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Image Gallery -->
+                    <div class="space-y-3">
+                        <div class="bg-stone-100 rounded-2xl overflow-hidden aspect-square">
+                            <img src="${product.image}" id="modal-main-img" class="w-full h-full object-cover" alt="${product.name}">
+                        </div>
+                    </div>
+
+                    <!-- Details & Controls -->
+                    <div class="space-y-4">
+                        <div>
+                            <span class="text-xs font-bold uppercase text-amber-700 bg-amber-50 px-2.5 py-1 rounded-md">
+                                ${product.category}
+                            </span>
+                            <h2 class="text-xl sm:text-2xl font-bold text-stone-900 mt-2">${product.name}</h2>
+                            <div class="flex items-center gap-2 mt-1 text-xs text-stone-500">
+                                <div class="flex items-center text-amber-500">
+                                    <i data-lucide="star" class="w-3.5 h-3.5 fill-amber-400"></i>
+                                    <span class="font-bold ml-1 text-stone-800">${product.rating}</span>
+                                </div>
+                                <span>•</span>
+                                <span>${product.sold} Terjual</span>
+                                <span>•</span>
+                                <span class="text-green-600 font-medium">Stok: ${product.stock} pcs</span>
+                            </div>
+                        </div>
+
+                        <div class="py-2 border-y border-stone-100">
+                            <div class="text-2xl font-bold text-amber-800">
+                                Rp ${product.price.toLocaleString('id-ID')}
+                            </div>
+                            ${product.originalPrice > product.price ? `
+                                <span class="text-xs text-stone-400 line-through">Rp ${product.originalPrice.toLocaleString('id-ID')}</span>
+                            ` : ''}
+                        </div>
+
+                        <p class="text-xs text-stone-600 leading-relaxed">${product.description}</p>
+
+                        <!-- Variant Size Selection -->
+                        ${product.sizes && product.sizes.length > 0 ? `
+                            <div>
+                                <label class="block text-xs font-bold text-stone-700 mb-2">Pilih Ukuran:</label>
+                                <div class="flex flex-wrap gap-2" id="modal-sizes">
+                                    ${product.sizes.map(s => `
+                                        <button onclick="selectModalVariant('size', '${s}')" class="px-3 py-1.5 text-xs rounded-xl border ${currentModalState.selectedSize === s ? 'border-amber-700 bg-amber-700 text-white font-bold' : 'border-stone-200 text-stone-700 hover:border-stone-300'}">
+                                            ${s}
+                                        </button>
+                                    `).join('')}
+                                </div>
+                            </div>
+                        ` : ''}
+
+                        <!-- Variant Color Selection -->
+                        ${product.colors && product.colors.length > 0 ? `
+                            <div>
+                                <label class="block text-xs font-bold text-stone-700 mb-2">Pilih Warna:</label>
+                                <div class="flex flex-wrap gap-2" id="modal-colors">
+                                    ${product.colors.map(c => `
+                                        <button onclick="selectModalVariant('color', '${c}')" class="px-3 py-1.5 text-xs rounded-xl border ${currentModalState.selectedColor === c ? 'border-amber-700 bg-amber-700 text-white font-bold' : 'border-stone-200 text-stone-700 hover:border-stone-300'}">
+                                            ${c}
+                                        </button>
+                                    `).join('')}
+                                </div>
+                            </div>
+                        ` : ''}
+
+                        <!-- Quantity Modifier -->
+                        <div class="flex items-center gap-4 pt-2">
+                            <label class="text-xs font-bold text-stone-700">Jumlah:</label>
+                            <div class="flex items-center border border-stone-200 rounded-xl overflow-hidden">
+                                <button onclick="updateModalQty(-1)" class="px-3 py-1 bg-stone-100 hover:bg-stone-200 text-stone-700 font-bold">-</button>
+                                <span id="modal-qty" class="px-4 text-xs font-bold text-stone-900">1</span>
+                                <button onclick="updateModalQty(1)" class="px-3 py-1 bg-stone-100 hover:bg-stone-200 text-stone-700 font-bold">+</button>
+                            </div>
+                        </div>
+
+                        <!-- Modal CTA Action Buttons -->
+                        <div class="flex gap-3 pt-4">
+                            <button onclick="submitModalAddToCart(false)" class="flex-1 py-3 bg-amber-100 hover:bg-amber-200 text-amber-900 font-bold text-xs rounded-xl transition flex items-center justify-center gap-2">
+                                <i data-lucide="shopping-bag" class="w-4 h-4"></i> Tambah Keranjang
+                            </button>
+                            <button onclick="submitModalAddToCart(true)" class="flex-1 py-3 bg-amber-700 hover:bg-amber-800 text-white font-bold text-xs rounded-xl transition shadow-md">
+                                Beli Sekarang
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Related Recommendations -->
+                ${related.length > 0 ? `
+                    <div class="mt-8 pt-6 border-t border-stone-100">
+                        <h3 class="font-bold text-stone-900 text-sm mb-4">Rekomendasi Terkait (${product.category})</h3>
+                        <div class="grid grid-cols-3 gap-3">
+                            ${related.map(r => `
+                                <div onclick="openProductModal('${r.id}')" class="bg-stone-50 p-2 rounded-xl cursor-pointer hover:bg-stone-100 transition flex items-center gap-3 border border-stone-200">
+                                    <img src="${r.image}" class="w-12 h-12 rounded-lg object-cover" alt="${r.name}">
+                                    <div class="overflow-hidden">
+                                        <h4 class="text-xs font-medium text-stone-900 truncate">${r.name}</h4>
+                                        <span class="text-xs font-bold text-amber-800">Rp ${r.price.toLocaleString('id-ID')}</span>
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                ` : ''}
+            `;
+
+            document.getElementById('product-modal').classList.remove('hidden');
+            lucide.createIcons();
+        }
+
+        function closeProductModal() {
+            document.getElementById('product-modal').classList.add('hidden');
+        }
+
+        function selectModalVariant(type, value) {
+            if (type === 'size') currentModalState.selectedSize = value;
+            if (type === 'color') currentModalState.selectedColor = value;
+            openProductModal(currentModalState.productId); // re-render modal selection state
+        }
+
+        function updateModalQty(delta) {
+            const product = appState.products.find(p => p.id === currentModalState.productId);
+            let newQty = currentModalState.qty + delta;
+            if (newQty >= 1 && newQty <= product.stock) {
+                currentModalState.qty = newQty;
+                document.getElementById('modal-qty').innerText = newQty;
+            }
+        }
+
+        function submitModalAddToCart(directCheckout = false) {
+            const product = appState.products.find(p => p.id === currentModalState.productId);
+            addToCartInternal(product, currentModalState.qty, currentModalState.selectedSize, currentModalState.selectedColor);
+            closeProductModal();
+            if (directCheckout) {
+                navigate('checkout');
+            } else {
+                toggleCartDrawer();
+            }
+        }
+
+        function quickAddToCart(id) {
+            const product = appState.products.find(p => p.id === id);
+            if (!product) return;
+            const size = product.sizes ? product.sizes[0] : null;
+            const color = product.colors ? product.colors[0] : null;
+            addToCartInternal(product, 1, size, color);
+            showToast(`"${product.name}" ditambahkan ke keranjang.`);
+        }
+
+        /* ==========================================
+           6. CART DRAWER & STATE LOGIC
+           ========================================== */
+        function addToCartInternal(product, qty, size, color) {
+            const existingIndex = appState.cart.findIndex(item => 
+                item.id === product.id && item.selectedSize === size && item.selectedColor === color
+            );
+
+            if (existingIndex > -1) {
+                appState.cart[existingIndex].qty += qty;
+            } else {
+                appState.cart.push({
+                    id: product.id,
+                    name: product.name,
+                    price: product.price,
+                    image: product.image,
+                    category: product.category,
+                    selectedSize: size,
+                    selectedColor: color,
+                    qty: qty
+                });
+            }
+            saveState();
+            renderCartItems();
+        }
+
+        function toggleCartDrawer() {
+            const drawer = document.getElementById('cart-drawer');
+            drawer.classList.toggle('hidden');
+            renderCartItems();
+        }
+
+        function renderCartItems() {
+            const container = document.getElementById('cart-items-container');
+            const subtotalElem = document.getElementById('cart-subtotal');
+            const btnCheckout = document.getElementById('btn-checkout');
+
+            if (appState.cart.length === 0) {
+                container.innerHTML = `
+                    <div class="text-center py-12 space-y-3">
+                        <div class="w-12 h-12 bg-stone-100 text-stone-400 rounded-full flex items-center justify-center mx-auto">
+                            <i data-lucide="shopping-bag" class="w-6 h-6"></i>
+                        </div>
+                        <p class="text-xs text-stone-500">Keranjang belanja Anda masih kosong.</p>
+                        <button onclick="toggleCartDrawer(); navigate('catalog');" class="px-4 py-2 bg-amber-700 text-white text-xs font-semibold rounded-xl">
+                            Mulai Belanja
+                        </button>
+                    </div>
+                `;
+                subtotalElem.innerText = 'Rp 0';
+                btnCheckout.disabled = true;
+                lucide.createIcons();
+                return;
+            }
+
+            btnCheckout.disabled = false;
+            let subtotal = 0;
+
+            container.innerHTML = appState.cart.map((item, index) => {
+                const itemTotal = item.price * item.qty;
+                subtotal += itemTotal;
+                return `
+                    <div class="flex gap-3 bg-stone-50 p-3 rounded-2xl border border-stone-200 relative">
+                        <img src="${item.image}" class="w-16 h-16 rounded-xl object-cover shrink-0" alt="${item.name}">
+                        <div class="flex-1 overflow-hidden space-y-1">
+                            <h4 class="text-xs font-bold text-stone-900 truncate">${item.name}</h4>
+                            <div class="text-[10px] text-stone-500">
+                                ${item.selectedSize ? `Ukuran: ${item.selectedSize} ` : ''}
+                                ${item.selectedColor ? `| Warna: ${item.selectedColor}` : ''}
+                            </div>
+                            <div class="text-xs font-bold text-amber-800">
+                                Rp ${item.price.toLocaleString('id-ID')}
+                            </div>
+                            <!-- Quantity adjustment -->
+                            <div class="flex items-center gap-2 pt-1">
+                                <button onclick="updateCartQty(${index}, -1)" class="w-5 h-5 bg-white rounded border border-stone-200 font-bold text-xs text-stone-700">-</button>
+                                <span class="text-xs font-bold text-stone-800">${item.qty}</span>
+                                <button onclick="updateCartQty(${index}, 1)" class="w-5 h-5 bg-white rounded border border-stone-200 font-bold text-xs text-stone-700">+</button>
+                            </div>
+                        </div>
+                        <button onclick="removeCartItem(${index})" class="text-stone-400 hover:text-red-600 p-1">
+                            <i data-lucide="trash-2" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                `;
+            }).join('');
+
+            subtotalElem.innerText = `Rp ${subtotal.toLocaleString('id-ID')}`;
+            lucide.createIcons();
+        }
+
+        function updateCartQty(index, delta) {
+            if (appState.cart[index]) {
+                appState.cart[index].qty += delta;
+                if (appState.cart[index].qty <= 0) {
+                    appState.cart.splice(index, 1);
+                }
+                saveState();
+                renderCartItems();
+            }
+        }
+
+        function removeCartItem(index) {
+            appState.cart.splice(index, 1);
+            saveState();
+            renderCartItems();
+        }
+
+        function updateCartBadge() {
+            const count = appState.cart.reduce((sum, item) => sum + item.qty, 0);
+            const badge = document.getElementById('cart-badge');
+            if (count > 0) {
+                badge.innerText = count;
+                badge.classList.remove('hidden');
+            } else {
+                badge.classList.add('hidden');
+            }
+        }
+
+        function proceedToCheckout() {
+            toggleCartDrawer();
+            navigate('checkout');
+        }
+
+        /* ==========================================
+           7. CHECKOUT PROCESS & SUMMARY
+           ========================================== */
+        function renderCheckoutPage() {
+            if (appState.cart.length === 0) {
+                return `
+                    <div class="max-w-md mx-auto my-16 p-8 text-center bg-white rounded-2xl border border-stone-200 shadow-sm space-y-4">
+                        <i data-lucide="shopping-bag" class="w-12 h-12 text-stone-400 mx-auto"></i>
+                        <h2 class="font-bold text-stone-900">Keranjang Masih Kosong</h2>
+                        <p class="text-xs text-stone-500">Silakan pilih produk sepatu, sandal, atau tas terlebih dahulu sebelum checkout.</p>
+                        <button onclick="navigate('catalog')" class="px-5 py-2.5 bg-amber-700 text-white text-xs font-bold rounded-xl">Lihat Katalog</button>
+                    </div>
+                `;
+            }
+
+            const subtotal = appState.cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+            const shippingFee = 10000; // Flat Demo Shipping rate inside Bogor/Jabodetabek
+            const total = subtotal + shippingFee;
+
+            return `
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+                    <h1 class="text-2xl font-bold text-stone-900 mb-6 flex items-center gap-2">
+                        <i data-lucide="credit-card" class="w-6 h-6 text-amber-700"></i> Form Checkout & Pemesanan
+                    </h1>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                        <!-- Left Customer Shipping Form -->
+                        <div class="lg:col-span-2 space-y-6">
+                            <form id="checkout-form" onsubmit="handlePlaceOrder(event)" class="bg-white p-6 sm:p-8 rounded-2xl border border-stone-200 shadow-sm space-y-6">
+                                <h2 class="font-bold text-base text-stone-900 border-b border-stone-100 pb-3">1. Informasi Pengiriman</h2>
+                                
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+                                    <div>
+                                        <label class="block font-medium text-stone-700 mb-1">Nama Lengkap Penerima *</label>
+                                        <input type="text" id="cust-name" required placeholder="Contoh: Ahmad Rizki" class="w-full p-2.5 border border-stone-200 rounded-xl focus:border-amber-700 focus:outline-none">
+                                    </div>
+                                    <div>
+                                        <label class="block font-medium text-stone-700 mb-1">Nomor WhatsApp / HP *</label>
+                                        <input type="tel" id="cust-phone" required placeholder="0812xxxxxxxx" class="w-full p-2.5 border border-stone-200 rounded-xl focus:border-amber-700 focus:outline-none">
+                                    </div>
+                                </div>
+
+                                <div class="text-xs">
+                                    <label class="block font-medium text-stone-700 mb-1">Alamat Lengkap Pengiriman *</label>
+                                    <textarea id="cust-address" required rows="3" placeholder="Nama Jalan, No. Rumah, RT/RW, Kecamatan, Bogor" class="w-full p-2.5 border border-stone-200 rounded-xl focus:border-amber-700 focus:outline-none"></textarea>
+                                </div>
+
+                                <h2 class="font-bold text-base text-stone-900 border-b border-stone-100 pb-3 pt-2">2. Metode Pengiriman</h2>
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+                                    <label class="p-3 border border-amber-700 bg-amber-50 rounded-xl cursor-pointer flex items-center justify-between">
+                                        <div class="flex items-center gap-2">
+                                            <input type="radio" name="shipping" value="JNE Express" checked class="accent-amber-700">
+                                            <span class="font-bold text-stone-800">Kurir Regular (JNE/J&T)</span>
+                                        </div>
+                                        <span class="font-bold text-amber-900">Rp 10.000</span>
+                                    </label>
+                                    <label class="p-3 border border-stone-200 rounded-xl cursor-pointer flex items-center justify-between hover:bg-stone-50">
+                                        <div class="flex items-center gap-2">
+                                            <input type="radio" name="shipping" value="Ambil Sendiri di Pasar Ciawi" class="accent-amber-700">
+                                            <span class="font-medium text-stone-800">Ambil di Toko Pasar Ciawi</span>
+                                        </div>
+                                        <span class="font-bold text-stone-600">Gratis</span>
+                                    </label>
+                                </div>
+
+                                <h2 class="font-bold text-base text-stone-900 border-b border-stone-100 pb-3 pt-2">3. Metode Pembayaran (Demo)</h2>
+                                <div class="space-y-2 text-xs">
+                                    <label class="p-3 border border-stone-200 rounded-xl cursor-pointer flex items-center gap-3 hover:bg-stone-50 block">
+                                        <input type="radio" name="payment" value="QRIS Instant Demo" checked class="accent-amber-700">
+                                        <div>
+                                            <div class="font-bold text-stone-800">QRIS (Gopay, OVO, ShopeePay, BCA)</div>
+                                            <p class="text-[10px] text-stone-500">Konfirmasi otomatis secara real-time</p>
+                                        </div>
+                                    </label>
+                                    <label class="p-3 border border-stone-200 rounded-xl cursor-pointer flex items-center gap-3 hover:bg-stone-50 block">
+                                        <input type="radio" name="payment" value="Transfer Bank BCA/Mandiri" class="accent-amber-700">
+                                        <div>
+                                            <div class="font-bold text-stone-800">Transfer Bank Manual</div>
+                                            <p class="text-[10px] text-stone-500">BCA 123-456-789 a/n HARA STORE</p>
+                                        </div>
+                                    </label>
+                                    <label class="p-3 border border-stone-200 rounded-xl cursor-pointer flex items-center gap-3 hover:bg-stone-50 block">
+                                        <input type="radio" name="payment" value="COD Toko Pasar Ciawi" class="accent-amber-700">
+                                        <div>
+                                            <div class="font-bold text-stone-800">Bayar di Toko (COD Ciawi)</div>
+                                            <p class="text-[10px] text-stone-500">Bayar saat barang diambil di Pasar Ciawi</p>
+                                        </div>
+                                    </label>
+                                </div>
+
+                                <button type="submit" class="w-full py-3.5 bg-amber-700 hover:bg-amber-800 text-white font-bold text-sm rounded-xl transition shadow-md">
+                                    Konfirmasi & Buat Pesanan
+                                </button>
+                            </form>
+                        </div>
+
+                        <!-- Right Order Summary Snapshot -->
+                        <div class="bg-white p-6 rounded-2xl border border-stone-200 shadow-sm h-fit space-y-4">
+                            <h2 class="font-bold text-base text-stone-900 border-b border-stone-100 pb-3">Ringkasan Pesanan</h2>
+                            
+                            <div class="space-y-3 max-h-60 overflow-y-auto pr-1">
+                                ${appState.cart.map(item => `
+                                    <div class="flex items-center gap-3 text-xs border-b border-stone-50 pb-2">
+                                        <img src="${item.image}" class="w-12 h-12 rounded-lg object-cover" alt="${item.name}">
+                                        <div class="flex-1 overflow-hidden">
+                                            <div class="font-medium text-stone-800 truncate">${item.name}</div>
+                                            <div class="text-[10px] text-stone-400">Qty: ${item.qty} ${item.selectedSize ? `| Size: ${item.selectedSize}` : ''}</div>
+                                        </div>
+                                        <div class="font-bold text-stone-900">
+                                            Rp ${(item.price * item.qty).toLocaleString('id-ID')}
+                                        </div>
+                                    </div>
+                                `).join('')}
+                            </div>
+
+                            <div class="pt-2 border-t border-stone-100 space-y-2 text-xs text-stone-600">
+                                <div class="flex justify-between">
+                                    <span>Subtotal Produk:</span>
+                                    <span class="font-semibold text-stone-900">Rp ${subtotal.toLocaleString('id-ID')}</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span>Estimasi Ongkos Kirim:</span>
+                                    <span class="font-semibold text-stone-900">Rp ${shippingFee.toLocaleString('id-ID')}</span>
+                                </div>
+                                <div class="flex justify-between text-sm font-bold text-amber-900 pt-2 border-t border-stone-200">
+                                    <span>Total Pembayaran:</span>
+                                    <span>Rp ${total.toLocaleString('id-ID')}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function handlePlaceOrder(e) {
+            e.preventDefault();
+            const name = document.getElementById('cust-name').value;
+            const phone = document.getElementById('cust-phone').value;
+            const address = document.getElementById('cust-address').value;
+            const shipping = document.querySelector('input[name="shipping"]:checked').value;
+            const payment = document.querySelector('input[name="payment"]:checked').value;
+
+            const subtotal = appState.cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+            const shippingFee = shipping.includes('Gratis') ? 0 : 10000;
+            const orderId = "ORD-" + Math.floor(10000 + Math.random() * 90000);
+
+            const newOrder = {
+                id: orderId,
+                date: new Date().toISOString().slice(0, 16).replace('T', ' '),
+                customer: { name, phone, address },
+                items: [...appState.cart],
+                shippingMethod: shipping,
+                paymentMethod: payment,
+                total: subtotal + shippingFee,
+                status: "Menunggu Konfirmasi"
+            };
+
+            appState.orders.unshift(newOrder);
+            appState.cart = []; // clear cart after purchase
+            saveState();
+
+            showToast(`Pesanan #${orderId} berhasil dibuat!`);
+            navigate('account');
+        }
+
+        /* ==========================================
+           8. CUSTOMER ACCOUNT & ORDER HISTORY VIEW
+           ========================================== */
+        function renderAccountPage() {
+            return `
+                <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-8">
+                    <!-- Profile Summary Header -->
+                    <div class="bg-white p-6 rounded-2xl border border-stone-200 shadow-sm flex items-center justify-between">
+                        <div class="flex items-center gap-4">
+                            <div class="w-14 h-14 bg-amber-100 text-amber-800 rounded-full flex items-center justify-center font-bold text-xl">
+                                HS
+                            </div>
+                            <div>
+                                <h1 class="text-lg font-bold text-stone-900">Dashboard Pelanggan</h1>
+                                <p class="text-xs text-stone-500">Pelanggan Setia HARA STORE • Pasar Ciawi, Bogor</p>
+                            </div>
+                        </div>
+                        <button onclick="navigate('catalog')" class="mt-4 px-4 py-2 bg-amber-700 hover:bg-amber-600 text-white rounded-xl text-xs font-bold transition">Mulai Belanja</button>
+                    </div>
+
+                    <!-- Order History Section -->
+                    <div class="bg-white p-6 rounded-2xl border border-stone-200 shadow-sm space-y-4">
+                        <h2 class="font-bold text-base text-stone-900 flex items-center gap-2">
+                            <i data-lucide="package" class="w-5 h-5 text-amber-700"></i> Riwayat Pesanan Saya
+                        </h2>
+
+                        ${appState.orders.length > 0 ? `
+                            <div class="space-y-4">
+                                ${appState.orders.map(order => `
+                                    <div class="border border-stone-200 rounded-xl p-4 space-y-3">
+                                        <div class="flex flex-col sm:flex-row justify-between sm:items-center text-xs border-b border-stone-100 pb-2 gap-2">
+                                            <div>
+                                                <span class="font-bold text-stone-900">ID Pesanan: ${order.id}</span>
+                                                <span class="text-stone-400 ml-2">(${order.date})</span>
+                                            </div>
+                                            <span class="px-2.5 py-1 rounded-full text-[10px] font-bold ${
+                                                order.status === 'Selesai' ? 'bg-green-100 text-green-800' :
+                                                order.status === 'Diproses' ? 'bg-blue-100 text-blue-800' : 'bg-amber-100 text-amber-800'
+                                            }">
+                                                ${order.status}
+                                            </span>
+                                        </div>
+
+                                        <div class="space-y-2">
+                                            ${order.items.map(item => `
+                                                <div class="flex justify-between items-center text-xs">
+                                                    <span class="text-stone-700 font-medium">${item.qty}x ${item.name} (${item.selectedSize || 'All Size'})</span>
+                                                    <span class="text-stone-900 font-bold">Rp ${(item.price * item.qty).toLocaleString('id-ID')}</span>
+                                                </div>
+                                            `).join('')}
+                                        </div>
+
+                                        <div class="pt-2 border-t border-stone-100 flex justify-between items-center text-xs">
+                                            <span class="text-stone-500">Pembayaran: ${order.paymentMethod}</span>
+                                            <span class="font-bold text-amber-900 text-sm">Total: Rp ${order.total.toLocaleString('id-ID')}</span>
+                                        </div>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        ` : `
+                            <p class="text-xs text-stone-500 py-6 text-center">Belum ada transaksi pesanan.</p>
+                        `}
+                    </div>
+                </div>
+            `;
+        }
+
+        /* ==========================================
+           9. ABOUT US PAGE VIEW
+           ========================================== */
+        function renderAboutPage() {
+            return `
+                <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-10">
+                    <div class="text-center space-y-3">
+                        <span class="text-xs font-bold uppercase tracking-wider text-amber-700 bg-amber-50 px-3 py-1 rounded-full">Profil Usaha Retail</span>
+                        <h1 class="text-3xl font-extrabold text-stone-900 tracking-tight">Tentang HARA STORE</h1>
+                        <p class="text-stone-500 text-sm max-w-xl mx-auto">Pusat penjualan produk fashion lokal berkualitas: sepatu, sandal, dan tas terbaik di Pasar Ciawi, Bogor.</p>
+                    </div>
+
+                    <div class="bg-white p-8 rounded-2xl border border-stone-200 shadow-sm space-y-6 leading-relaxed text-sm text-stone-700">
+                        <h2 class="text-lg font-bold text-stone-900 border-b border-stone-100 pb-2">Cerita Brand HARA STORE</h2>
+                        <p>
+                            Berawal dari toko retail lokal di pusat <strong> Toko Hara Lantai Dasar Blok B, Pasar Ciawi, Kec. Ciawi , Kabupaten Bogor, Jawa Barat 16720 </strong>. HARA STORE berkomitmen menyediakan berbagai pilihan sepatu, sandal, dan tas dengan model yang selalu up-to-date untuk masyarakat Jabodetabek dan sekitarnya.
+                        </p>
+                        <p>
+                            Kami berfokus pada tiga pilar utama: <strong>Kenyamanan, Fungsi, dan Keterjangkauan Harga</strong>. Target konsumen kami mencakup anak-anak, remaja, mahasiswa, hingga orang dewasa (usia 6–45 tahun) yang membutuhkan perlengkapan alas kaki dan tas berkualitas tinggi tanpa harus merogoh kocek terlalu dalam.
+                        </p>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
+                            <div class="bg-stone-50 p-4 rounded-xl border border-stone-200">
+                                <h3 class="font-bold text-stone-900 text-sm mb-1">Lokasi Toko Fisik</h3>
+                                <p class="text-xs text-stone-600">Toko Hara Lantai Dasar Blok B, Pasar Ciawi, Kec. Ciawi , Kabupaten Bogor, Jawa Barat 16720.</p>
+                            </div>
+                            <div class="bg-stone-50 p-4 rounded-xl border border-stone-200">
+                                <h3 class="font-bold text-stone-900 text-sm mb-1">Media Sosial Resmi</h3>
+                                <p class="text-xs text-amber-800 font-bold">Instagram: @harastoree._</p>
+                                <p class="text-xs text-amber-800 font-bold">Tiktok: @harastore._</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        /* ==========================================
+           10. ADMIN DASHBOARD VIEW & CONTROLLERS
+           ========================================== */
+        /* ==========================================
+           DEMO AUTHENTICATION: ADMIN LOGIN
+           Catatan: autentikasi ini hanya untuk prototipe tugas kuliah.
+           ========================================== */
+        function renderAdminLogin() {
+            return `
+                <section class="max-w-md mx-auto px-4 sm:px-6 py-12 sm:py-16">
+                    <div class="bg-white border border-stone-200 rounded-3xl shadow-sm overflow-hidden">
+                        <div class="bg-stone-900 text-white p-7 text-center">
+                            <div class="w-14 h-14 mx-auto mb-3 rounded-2xl bg-amber-700 flex items-center justify-center text-2xl font-extrabold">H</div>
+                            <p class="text-amber-400 text-xs font-bold uppercase tracking-widest">HARA STORE</p>
+                            <h1 class="text-2xl font-extrabold mt-1">Login Admin</h1>
+                            <p class="text-stone-300 text-sm mt-2">Masuk untuk mengelola produk dan pesanan toko.</p>
+                        </div>
+                        <form onsubmit="handleAdminLogin(event)" class="p-6 sm:p-8 space-y-4">
+                            <div>
+                                <label for="admin-username" class="block text-sm font-semibold text-stone-700 mb-1.5">Username</label>
+                                <input id="admin-username" name="username" autocomplete="username" required class="w-full rounded-xl border border-stone-200 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-amber-600" placeholder="Masukkan username">
+                            </div>
+                            <div>
+                                <label for="admin-password" class="block text-sm font-semibold text-stone-700 mb-1.5">Password</label>
+                                <input id="admin-password" name="password" type="password" autocomplete="current-password" required class="w-full rounded-xl border border-stone-200 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-amber-600" placeholder="Masukkan password">
+                            </div>
+                            <p id="admin-login-error" class="hidden text-sm text-red-600" role="alert">Username atau password salah.</p>
+                            <button type="submit" class="w-full bg-amber-700 hover:bg-amber-600 text-white rounded-xl py-3 font-bold text-sm transition">Login ke Dashboard</button>
+                            <button type="button" onclick="navigate('home')" class="w-full border border-stone-200 hover:bg-stone-50 text-stone-700 rounded-xl py-3 font-semibold text-sm transition">Kembali ke Toko</button>
+                            <div class="bg-amber-50 border border-amber-100 rounded-xl p-3 text-xs text-amber-900 leading-relaxed">
+                                <strong>Akun demo untuk presentasi:</strong><br>Username: <code>admin</code><br>Password: <code>Hara123!</code>
+                            </div>
+                            <p class="text-[11px] text-stone-400 leading-relaxed">Mode prototipe: akun demo ini hanya untuk simulasi dan bukan sistem keamanan untuk toko online sungguhan.</p>
+                        </form>
+                    </div>
+                </section>
+            `;
+        }
+
+        function handleAdminLogin(event) {
+            event.preventDefault();
+            const username = document.getElementById('admin-username').value.trim();
+            const password = document.getElementById('admin-password').value;
+            if (username === 'admin' && password === 'Hara123!') {
+                appState.adminLoggedIn = true;
+                sessionStorage.setItem('hara_admin_logged_in', 'true');
+                showToast('Login admin berhasil.');
+                renderView();
+            } else {
+                const error = document.getElementById('admin-login-error');
+                error.classList.remove('hidden');
+                document.getElementById('admin-password').value = '';
+            }
+        }
+
+        function adminLogout() {
+            appState.adminLoggedIn = false;
+            sessionStorage.removeItem('hara_admin_logged_in');
+            showToast('Kamu telah keluar dari dashboard admin.');
+            navigate('home');
+        }
+
+        function renderAdminDashboard() {
+            const totalRevenue = appState.orders.reduce((sum, o) => sum + o.total, 0);
+            const pendingOrders = appState.orders.filter(o => o.status === 'Menunggu Konfirmasi').length;
+
+            return `
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-8">
+                    <!-- Admin Top Bar -->
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center bg-stone-900 text-white p-6 rounded-2xl gap-4">
+                        <div>
+                            <span class="text-amber-400 text-xs font-bold uppercase tracking-wider">HARA STORE Administration</span>
+                            <h1 class="text-2xl font-bold">Dashboard Manajemen Retail</h1>
+                        </div>
+                        <div class="flex flex-wrap gap-2">
+                            <button onclick="openAddProductModal()" class="px-4 py-2 bg-amber-700 hover:bg-amber-600 text-white font-bold text-xs rounded-xl transition flex items-center gap-2">
+                                <i data-lucide="plus" class="w-4 h-4"></i> Tambah Produk Baru
+                            </button>
+                            <button onclick="adminLogout()" class="px-4 py-2 border border-stone-600 hover:bg-stone-800 text-white font-bold text-xs rounded-xl transition flex items-center gap-2">
+                                <i data-lucide="log-out" class="w-4 h-4"></i> Keluar Admin
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Key Statistics Cards -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                        <div class="bg-white p-5 rounded-2xl border border-stone-200 shadow-sm">
+                            <span class="text-xs text-stone-500 font-medium">Total Produk Catalog</span>
+                            <div class="text-2xl font-extrabold text-stone-900 mt-1">${appState.products.length}</div>
+                            <span class="text-[10px] text-stone-400">Sepatu, Sandal & Tas</span>
+                        </div>
+                        <div class="bg-white p-5 rounded-2xl border border-stone-200 shadow-sm">
+                            <span class="text-xs text-stone-500 font-medium">Total Pesanan Masuk</span>
+                            <div class="text-2xl font-extrabold text-stone-900 mt-1">${appState.orders.length}</div>
+                            <span class="text-[10px] text-amber-700 font-semibold">${pendingOrders} Perlu Konfirmasi</span>
+                        </div>
+                        <div class="bg-white p-5 rounded-2xl border border-stone-200 shadow-sm">
+                            <span class="text-xs text-stone-500 font-medium">Total Penjualan</span>
+                            <div class="text-2xl font-extrabold text-amber-800 mt-1">Rp ${totalRevenue.toLocaleString('id-ID')}</div>
+                            <span class="text-[10px] text-stone-400">Data Transaksi Real-time</span>
+                        </div>
+                        <div class="bg-white p-5 rounded-2xl border border-stone-200 shadow-sm">
+                            <span class="text-xs text-stone-500 font-medium">Lokasi Store</span>
+                            <div class="text-sm font-bold text-stone-800 mt-1">Pasar Ciawi</div>
+                            <span class="text-[10px] text-stone-400">Bogor, Jawa Barat</span>
+                        </div>
+                    </div>
+
+                    <!-- Product Management Table -->
+                    <div class="bg-white p-6 rounded-2xl border border-stone-200 shadow-sm space-y-4">
+                        <h2 class="font-bold text-base text-stone-900">Manajemen Produk Catalog</h2>
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left text-xs border-collapse">
+                                <thead>
+                                    <tr class="border-b border-stone-200 bg-stone-50 text-stone-600">
+                                        <th class="p-3">Gambar</th>
+                                        <th class="p-3">Nama Produk</th>
+                                        <th class="p-3">Kategori</th>
+                                        <th class="p-3">Harga</th>
+                                        <th class="p-3">Stok</th>
+                                        <th class="p-3 text-right">Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    ${appState.products.map(p => `
+                                        <tr class="border-b border-stone-100 hover:bg-stone-50">
+                                            <td class="p-3"><img src="${p.image}" class="w-10 h-10 rounded-lg object-cover" alt=""></td>
+                                            <td class="p-3 font-semibold text-stone-800">${p.name}</td>
+                                            <td class="p-3"><span class="px-2 py-0.5 bg-stone-100 rounded text-stone-700">${p.category}</span></td>
+                                            <td class="p-3 font-bold text-amber-800">Rp ${p.price.toLocaleString('id-ID')}</td>
+                                            <td class="p-3">${p.stock} pcs</td>
+                                            <td class="p-3 text-right space-x-2">
+                                                <button onclick="deleteProduct('${p.id}')" class="text-red-600 hover:underline">Hapus</button>
+                                            </td>
+                                        </tr>
+                                    `).join('')}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Orders Fulfillment Table -->
+                    <div class="bg-white p-6 rounded-2xl border border-stone-200 shadow-sm space-y-4">
+                        <h2 class="font-bold text-base text-stone-900">Manajemen Status Pesanan</h2>
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left text-xs border-collapse">
+                                <thead>
+                                    <tr class="border-b border-stone-200 bg-stone-50 text-stone-600">
+                                        <th class="p-3">ID Order</th>
+                                        <th class="p-3">Pelanggan</th>
+                                        <th class="p-3">Total</th>
+                                        <th class="p-3">Status</th>
+                                        <th class="p-3">Update Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    ${appState.orders.map((o, idx) => `
+                                        <tr class="border-b border-stone-100 hover:bg-stone-50">
+                                            <td class="p-3 font-bold text-stone-900">${o.id}</td>
+                                            <td class="p-3">${o.customer.name} (${o.customer.phone})</td>
+                                            <td class="p-3 font-bold text-amber-800">Rp ${o.total.toLocaleString('id-ID')}</td>
+                                            <td class="p-3"><span class="font-bold text-stone-800">${o.status}</span></td>
+                                            <td class="p-3">
+                                                <select onchange="updateOrderStatus(${idx}, this.value)" class="p-1 border border-stone-200 rounded text-xs">
+                                                    <option value="Menunggu Konfirmasi" ${o.status === 'Menunggu Konfirmasi' ? 'selected' : ''}>Menunggu</option>
+                                                    <option value="Diproses" ${o.status === 'Diproses' ? 'selected' : ''}>Diproses</option>
+                                                    <option value="Selesai" ${o.status === 'Selesai' ? 'selected' : ''}>Selesai</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                    `).join('')}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function openAddProductModal() {
+            const modalContent = document.getElementById('product-modal-content');
+            modalContent.innerHTML = `
+                <button onclick="closeProductModal()" class="absolute top-4 right-4 text-stone-400">
+                    <i data-lucide="x" class="w-6 h-6"></i>
+                </button>
+                <h2 class="text-lg font-bold text-stone-900 mb-4">Tambah Produk Baru (Katalog Retail)</h2>
+                <form onsubmit="handleAddProductSubmit(event)" class="space-y-4 text-xs">
+                    <div>
+                        <label class="block font-medium text-stone-700 mb-1">Nama Produk *</label>
+                        <input type="text" id="admin-name" required placeholder="Contoh: Sepatu Sneaker Casual" class="w-full p-2 border border-stone-200 rounded-xl">
+                    </div>
+                    <div class="grid grid-cols-2 gap-3">
+                        <div>
+                            <label class="block font-medium text-stone-700 mb-1">Kategori * (Wajib Sepatu/Sandal/Tas)</label>
+                            <select id="admin-category" class="w-full p-2 border border-stone-200 rounded-xl">
+                                <option value="Sepatu">Sepatu</option>
+                                <option value="Sandal">Sandal</option>
+                                <option value="Tas">Tas</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block font-medium text-stone-700 mb-1">Harga (IDR) *</label>
+                            <input type="number" id="admin-price" required placeholder="150000" class="w-full p-2 border border-stone-200 rounded-xl">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block font-medium text-stone-700 mb-1">URL Gambar Unsplash *</label>
+                        <input type="url" id="admin-image" required placeholder="https://images.unsplash.com/..." class="w-full p-2 border border-stone-200 rounded-xl">
+                    </div>
+                    <div>
+                        <label class="block font-medium text-stone-700 mb-1">Deskripsi Singkat</label>
+                        <textarea id="admin-desc" rows="2" class="w-full p-2 border border-stone-200 rounded-xl"></textarea>
+                    </div>
+                    <button type="submit" class="w-full py-2.5 bg-amber-700 text-white font-bold rounded-xl">Simpan Produk</button>
+                </form>
+            `;
+            document.getElementById('product-modal').classList.remove('hidden');
+            lucide.createIcons();
+        }
+
+        function handleAddProductSubmit(e) {
+            e.preventDefault();
+            const newProd = {
+                id: "prod-" + (appState.products.length + 1),
+                name: document.getElementById('admin-name').value,
+                category: document.getElementById('admin-category').value,
+                price: parseInt(document.getElementById('admin-price').value),
+                originalPrice: parseInt(document.getElementById('admin-price').value) + 30000,
+                rating: 4.8,
+                sold: 0,
+                image: document.getElementById('admin-image').value,
+                description: document.getElementById('admin-desc').value || "Produk berkualitas tinggi dari HARA STORE Pasar Ciawi Bogor.",
+                sizes: ["38", "39", "40", "41", "42"],
+                colors: ["Hitam", "Cokelat"],
+                stock: 20,
+                isFeatured: true,
+                isNew: true
+            };
+
+            appState.products.unshift(newProd);
+            saveState();
+            closeProductModal();
+            showToast("Produk baru berhasil ditambahkan!");
+            renderView();
+        }
+
+        function deleteProduct(id) {
+            if (confirm("Apakah Anda yakin ingin menghapus produk ini?")) {
+                appState.products = appState.products.filter(p => p.id !== id);
+                saveState();
+                renderView();
+                showToast("Produk berhasil dihapus.");
+            }
+        }
+
+        function updateOrderStatus(index, newStatus) {
+            if (appState.orders[index]) {
+                appState.orders[index].status = newStatus;
+                saveState();
+                showToast("Status pesanan diperbarui.");
+            }
+        }
+
+        /* ==========================================
+           11. UTILITY & TOAST NOTIFICATIONS
+           ========================================== */
+        function showToast(msg) {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            toast.className = "bg-stone-900 text-white text-xs px-4 py-3 rounded-xl shadow-lg border border-amber-500/30 flex items-center gap-2 transition transform translate-y-2";
+            toast.innerHTML = `<i data-lucide="check-circle" class="w-4 h-4 text-amber-400"></i> ${msg}`;
+            container.appendChild(toast);
+            lucide.createIcons();
+
+            setTimeout(() => {
+                toast.remove();
+            }, 3000);
+        }
+
+        // Initialize application on document load
+        window.onload = function() {
+            renderView();
+        };
+    </script>
+</body>
+</html>
